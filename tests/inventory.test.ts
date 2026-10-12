@@ -26,7 +26,7 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-describe("Products endpoints", () => {
+describe("Inventory endpoints", () => {
   // Test 1: creación exitosa
   it("POST /api/products crea un producto y responde 201", async () => {
     mongoInsertOne.mockResolvedValueOnce({
@@ -34,7 +34,7 @@ describe("Products endpoints", () => {
     });
 
     const res = await request(app)
-      .post("/api/products")
+      .post("/api/inventory")
       .send({
         name: "Teclado",
         price: 120000,
@@ -54,7 +54,7 @@ describe("Products endpoints", () => {
   // Test 2: validación de datos
   it("POST /api/products sin precio responde 400", async () => {
     const res = await request(app)
-      .post("/api/products")
+      .post("/api/inventory")
       .send({
         name: "Teclado",
       });

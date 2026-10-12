@@ -2,13 +2,13 @@
 import { Router, type Request, type Response } from "express";
 import { getMongoDb } from "../db/mongo.js";
 
-export const productsRouter = Router();
+export const inventoryRouter = Router();
 
 // GET /api/products - Listar productos
-productsRouter.get("/", async (_req: Request, res: Response) => {
+inventoryRouter.get("/", async (_req: Request, res: Response) => {
   try {
     const products = await getMongoDb()
-      .collection("products")
+      .collection("inventory")
       .find({})
       .toArray();
 
@@ -30,7 +30,7 @@ productsRouter.get("/", async (_req: Request, res: Response) => {
 });
 
 // POST /api/products - Crear un producto
-productsRouter.post("/", async (req: Request, res: Response) => {
+inventoryRouter.post("/", async (req: Request, res: Response) => {
   const { name, price } = req.body as {
     name?: string;
     price?: number;
